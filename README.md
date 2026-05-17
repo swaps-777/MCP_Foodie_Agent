@@ -50,6 +50,15 @@ copy .env.example .env
 streamlit run app.py
 ```
 
+### Railway deployment
+
+1. Push this repository to GitHub or connect your local repo to Railway.
+2. Create a new Railway project and set the service to use this repo.
+3. In Railway service settings, add an environment variable:
+   - `OPENAI_API_KEY=sk-...`
+4. Railway will use `Procfile` and `railway.json` to launch the app:
+   - `streamlit run app.py --server.port $PORT --server.address 0.0.0.0 --server.enableCORS false --server.headless true`
+
 Only `OPENAI_API_KEY` is required. No Google keys, no TripAdvisor, no accounts.
 
 ## Demo queries

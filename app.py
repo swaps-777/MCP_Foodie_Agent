@@ -26,6 +26,19 @@ st.caption(
     "Real MCP protocol (DuckDuckGo over stdio)  ·  Full guardrail stack"
 )
 
+st.sidebar.header("About FoodieAgent v2")
+st.sidebar.write(
+    "A lightweight restaurant recommendation assistant with real web search, local RAG, "
+    "and guardrail-driven safety checks."
+)
+st.sidebar.markdown("### Example queries")
+st.sidebar.markdown(
+    "- `Best biryani in Mumbai under 500`\n"
+    "- `Vegetarian South Indian breakfast in Bangalore`\n"
+    "- `What is Hyderabadi biryani?`")
+st.sidebar.markdown("---")
+st.sidebar.markdown("Set `OPENAI_API_KEY` in your Railway environment or local `.env` file.")
+
 
 @st.cache_resource
 def _init():
@@ -36,6 +49,9 @@ def _init():
 graph = _init()
 
 if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+if st.sidebar.button("Clear conversation"):
     st.session_state.messages = []
 
 for m in st.session_state.messages:
